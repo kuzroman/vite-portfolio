@@ -1,4 +1,5 @@
-module.exports = [{
+export default [
+  {
     imageDirectory: 'kuzroman',
     nameTitle: 'Portfolio',
     nameCompany: 'Kuznetsov Roman',
@@ -8,7 +9,7 @@ module.exports = [{
     skills: ['Vue', 'Nuxt', 'SSR', 'SPA', 'Audio', 'CSS', 'JS', 'Lodash', 'Webpack', 'LowDb', 'SASS', 'NPM', 'Node', 'Git'],
     date: 2021,
     link: ''
-}
+    }
     , {
         imageDirectory: 'raiffeisen',
         nameTitle: 'CRM, Form Builder',
@@ -136,4 +137,5 @@ module.exports = [{
         skills: ['HTML', 'CSS3', 'JavaScript', 'jQuery', 'animations', 'Photoshop'],
         date: 2010,
         link: "http://www.designbox.ru/eng/"
-    }]
+    }
+]

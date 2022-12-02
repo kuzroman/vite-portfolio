@@ -1,14 +1,15 @@
-import axios from 'axios'
+// import axios from 'axios'
 const defaultIsSent = false
 
-const apiGetAllLeaders = '/api/users/getAll'
-const apiAddLeader = '/api/users/add'
+// const apiGetAllLeaders = '/api/users/getAll'
+// const apiAddLeader = '/api/users/add'
 
 export default {
-    state: () => ({
+    namespaced: true,
+    state: {
         leaders: [],
         isSent: defaultIsSent
-    }),
+    },
     getters: {
         leaders: (state) => state.leaders,
         isSent: (state) => state.isSent,
@@ -20,21 +21,22 @@ export default {
     },
     actions: {
         getLeaders({commit}) {
-            return fetch(apiGetAllLeaders)
+            return fetch('')
                 .then((response) => response.json())
                 .then((leaders) => {
                     commit('fetchLeaders', leaders)
                 })
         },
         addLeader({commit}, data) {
-            return axios.post(apiAddLeader, data)
-                .then(function (response) {
-                    console.log(response, data);
-                    commit('setIsSent', true)
-                })
-                .catch(function (error) {
-                    // console.error(error);
-                });
+            return '';
+            // axios.post(apiAddLeader, data)
+            //     .then(function (response) {
+            //         console.log(response, data);
+            //         commit('setIsSent', true)
+            //     })
+            //     .catch(function (error) {
+            //         // console.error(error);
+            //     });
         }
     },
     mutations: {
@@ -49,7 +51,6 @@ export default {
             state.isSent = defaultIsSent
         },
     },
-
 }
 
 

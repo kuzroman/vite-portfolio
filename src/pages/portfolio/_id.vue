@@ -1,6 +1,5 @@
 <template>
   <div class="portfolio-id">
-
     <div class="scroll-y">
 
       <div class="header">
@@ -9,17 +8,18 @@
         <div v-if="work.descCompany">{{work.descCompany}}</div>
       </div>
 
-      <v-app class="carousel">
-        <v-carousel height="auto" hide-delimiter-background show-arrows-on-hover>
-          <v-carousel-item v-for="(image, i) in images" :key="i">
-            <v-sheet height="100%">
-              <v-row class="fill-height" align="center" justify="center">
-                <img :src="image.src" alt="">
-              </v-row>
-            </v-sheet>
-          </v-carousel-item>
-        </v-carousel>
-      </v-app>
+<!--      <el-carousel :interval="5000" arrow="always">-->
+<!--        <el-carousel-item v-for="(image, i) in images" :key="i">-->
+<!--          <img :src="image.src" alt="">-->
+<!--        </el-carousel-item>-->
+<!--      </el-carousel>-->
+
+      <el-carousel :interval="4000" type="card" height="200px">
+        <el-carousel-item v-for="(image, i) in images" :key="i">
+          <img :src="image.src" alt="">
+        </el-carousel-item>
+      </el-carousel>
+
 
       <div class="description">
 
@@ -43,19 +43,18 @@
 </template>
 
 <script>
-import UILink2Move from '~/components/UI/Link2Move.vue'
+// import UILink2Move from '~/components/UI/Link2Move.vue'
+import { default as works } from "~/db/works-new.js";
 
 export default {
-  components: {UILink2Move},
-
+  name: 'PortfolioId',
+  // components: {UILink2Move},
   data() {
     return {
-      works: require('/db/works.js'),
+      works: works,
     }
   },
-
   computed: {
-
     work() {
       return this.works[this.$route.params.id];
     },
@@ -64,7 +63,8 @@ export default {
     },
     images() {
       return [...Array(this.work.numberImg)].map((x, i) => ({
-        src: require(`/assets/img/portfolio/gallery/${this.projectName}/${i+1}.jpg`)
+        // src: require(`/assets/img/portfolio/gallery/${this.projectName}/${i+1}.jpg`)
+        src: `/img/portfolio/gallery/${this.projectName}/${i+1}.jpg`
       }))
 
     },
@@ -87,10 +87,44 @@ export default {
 </script>
 
 <style lang="scss">
-@import "/assets/styles/props";
+@import "../../assets/styles/props";
 
 .portfolio-id {
   line-height: 2;
+
+
+  .el-carousel__item h3 {
+    color: #475669;
+    opacity: 0.75;
+    line-height: 200px;
+    margin: 0;
+    text-align: center;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n + 1) {
+    background-color: #d3dce6;
+  }
+
+  //.el-carousel__item h3 {
+  //  color: #475669;
+  //  opacity: 0.75;
+  //  line-height: 300px;
+  //  margin: 0;
+  //  text-align: center;
+  //}
+  //
+  //.el-carousel__item:nth-child(2n) {
+  //  background-color: #99a9bf;
+  //}
+  //
+  //.el-carousel__item:nth-child(2n + 1) {
+  //  background-color: #d3dce6;
+  //}
+
 
   .row {
     margin: 0;

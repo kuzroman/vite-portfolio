@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "/assets/styles/props";
+@import "../assets/styles/props";
 
 .sound-bar {
   position: absolute;

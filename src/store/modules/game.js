@@ -1,4 +1,4 @@
-import vue from '@vitejs/plugin-vue';
+// import vue from '@vitejs/plugin-vue';
 
 const defaultIsSeedsFall = false
 const defaultIsGameReady = false
@@ -12,7 +12,8 @@ const defaultDamage = 0
 const defaultTimeLeft = 30
 
 export default {
-  state: () => ({
+  namespaced: true,
+  state: {
     isSeedsFall: defaultIsSeedsFall,
     isGameReady: defaultIsGameReady,
     isGameStart: defaultIsGameStart,
@@ -24,7 +25,7 @@ export default {
     shots: defaultShots,
     damage: defaultDamage,
     timeLeft: defaultTimeLeft,
-  }),
+  },
   getters: {
     isSeedsFall: (state) => state.isSeedsFall,
     isGameReady: (state) => state.isGameReady,
@@ -40,9 +41,6 @@ export default {
     shots: (state) => state.shots,
     damage: (state) => state.damage,
     timeLeft: (state) => state.timeLeft,
-  },
-  actions: {
-
   },
   mutations: {
     setIsSeedsFall(state, bool) {
@@ -85,7 +83,7 @@ export default {
       state.letters[letters.id].isKilled = true
     },
     updateLetters(state, letter) {
-      vue.set(state.letters, letter.id, letter)
+      // vue.set(state.letters, letter.id, letter)
     },
     increaseShoots(state) {
       state.shots += 1

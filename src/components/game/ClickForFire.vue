@@ -26,7 +26,7 @@ export default {
     ...mapMutations('game', ['setIsGameReady']),
 
     handleClick() {
-      console.log(111);
+      console.log('');
     },
   },
   mounted() {

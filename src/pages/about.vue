@@ -54,11 +54,11 @@
 </template>
 
 <script>
-import SkillsMe from "/components/SkillsMe";
-import UILink2Move from '/components/UI/Link2Move.vue'
+import SkillsMe from "~/components/SkillsMe.vue";
+import UILink2Move from '~/components/UI/Link2Move.vue'
 
 export default {
-  components: {SkillsMe,UILink2Move},
+  components: { SkillsMe, UILink2Move },
 
   transition: {
     name: 'fade',
@@ -75,7 +75,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "/assets/styles/props";
+@import "../assets/styles/props";
 
 .skills {
   color: $color-12;

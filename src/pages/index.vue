@@ -1,11 +1,8 @@
 <template>
-  1111
   <div class="page-game">
     <MainGame/>
   </div>
 </template>
-
-<router>{ name: 'game' }</router>
 
 <script>
 import MainGame from '~/components/game/MainGame.vue'

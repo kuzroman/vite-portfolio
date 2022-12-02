@@ -3,8 +3,8 @@
     <nav>
       <UILink2Move
           v-for="route in navigation"
-          :key="route.name"
-          :text="route.name"
+          :key="route?.name"
+          :text="route?.name"
           @click.native="toPage({ route })"
       />
     </nav>
@@ -13,14 +13,14 @@
 
 <script>
 import {mapGetters, mapMutations} from 'vuex'
-import UILink2Move from '/components/UI/Link2Move.vue'
+import UILink2Move from '~/components/UI/Link2Move.vue'
 
 export default {
   name: 'MenuNavigation',
   components: {UILink2Move},
   props: {},
   computed: {
-    ...mapGetters('app', ['isMenuNavigationOpened', 'navigation']),
+    ...mapGetters('app', ['isMenuNavigationOpened', 'navigation', 'isSiteFirstLoaded']),
   },
   methods: {
     ...mapMutations('app', ['toPage']),

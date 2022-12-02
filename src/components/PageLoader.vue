@@ -45,11 +45,11 @@ export default {
     },
   },
   created() {
-    this.$on('animation-start-goDown', () => {
-      setTimeout(() => {
-        this.setIsPageLoaderHide(true)
-      }, time)
-    })
+    // this.$on('animation-start-goDown', () => {
+    //   setTimeout(() => {
+    //     this.setIsPageLoaderHide(true)
+    //   }, time)
+    // })
 
     this.runAnimations()
   },
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '/assets/styles/props.scss';
+@import '../assets/styles/props.scss';
 
 .page-loader {
   $size: 150px;
@@ -82,8 +82,8 @@ export default {
     position: absolute;
     width: $size;
     height: $size;
-    left: calc(50% - #{$size / 2});
-    top: calc(50% - #{$size / 2});
+    left: calc(50% - $size / 2);
+    top: calc(50% - $size / 2);
     transition: transform 0.6s;
     transform: scale(0);
   }
@@ -113,7 +113,7 @@ export default {
   }
   .loader:before,
   .loader:after {
-    width: #{$size / 2};
+    width: calc($size / 2);
     height: $size;
     position: absolute;
     content: '';
@@ -123,13 +123,13 @@ export default {
   .loader:before {
     border-radius: 10.2em 0 0 10.2em;
     left: -1px;
-    transform-origin: #{$size / 2};
+    transform-origin: calc($size / 2);
     transform: rotate(0);
   }
   .loader:after {
     border-radius: 0 10.2em 10.2em 0;
     left: 74px;
-    transform-origin: 0 #{$size / 2};
+    transform-origin: 0 calc($size / 2);
     transform: rotate(0);
   }
 

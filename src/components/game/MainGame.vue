@@ -12,7 +12,7 @@
       @canvas-letters-damage="increaseDamage"
     />
 
-    <ClickForFire />
+<!--    <ClickForFire />-->
 
     <ButtonPlay
       @button-play--mounted="setBarrier"

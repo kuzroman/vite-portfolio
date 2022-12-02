@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "/assets/styles/props";
+@import "../assets/styles/props";
 
 .contacts {
 

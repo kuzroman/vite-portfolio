@@ -1,15 +1,10 @@
 <template>
   <div class="portfolio">
-
     <div class="scroll-y">
-
-
       <h1 class="h1">Portfolio {{ $route.params.id }}</h1>
-
-
       <div class="works">
-
-        <NuxtLink v-for="(work, i) in works" :to="{ path: `portfolio/${i}`}" :key="i">
+        <router-link v-for="(work, i) in works" :to="{ path: `portfolio/${i}`}" :key="i" >
+<!--        <NuxtLink v-for="(work, i) in works" :to="{ path: `portfolio/${i}`}" :key="i">-->
           <div
               class="work"
               :style="{'background-image': `url(${getBg(work, '0')})`}">
@@ -19,31 +14,29 @@
             </div>
             <div class="work-logo" :style="{'background-image': `url(${getBg(work, 'logo')})`}"></div>
           </div>
-        </NuxtLink>
-
+<!--        </NuxtLink>-->
+        </router-link>
       </div>
-
     </div>
-
   </div>
 </template>
 
 <script>
-
+import { default as works } from "~/db/works-new.js";
+console.log('works1', works);
 
 export default {
-
+  name: 'PagePortfolio',
   data() {
     return {
-      works: require('/db/works.js')
+      works: works
     }
   },
-
   methods: {
 
     getBg(work, name) {
       const type = name === 'logo' ? '.png' : '.jpg'
-      return require(`~/assets/img/portfolio/gallery/${work.imageDirectory}/${name + type}`)
+      return `/img/portfolio/gallery/${work.imageDirectory}/${name + type}`
     },
   },
 
@@ -62,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "/assets/styles/props";
+@import "../../assets/styles/props";
 
 .portfolio {
 

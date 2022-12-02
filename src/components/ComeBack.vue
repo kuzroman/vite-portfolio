@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import UIComeBack from '/components/UI/ComeBack.vue'
+import UIComeBack from '~/components/UI/ComeBack.vue'
 
 export default {
   name: 'ComeBack',
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "/assets/styles/props";
+@import "../assets/styles/props";
 
 .come-back {
   position: absolute;

@@ -16,14 +16,14 @@ export default {
 
   data() {
     return {
-      knowledge: require('/db/skills.json')
+      knowledge: [] //require('/db/skills.json')
     }
   },
 }
 </script>
 
 <style lang="scss">
-@import "/assets/styles/props.scss";
+@import "../assets/styles/props.scss";
 
 .skills-me {
 
