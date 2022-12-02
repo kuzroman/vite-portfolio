@@ -1,0 +1,181 @@
+import { acceptHMRUpdate, defineStore } from 'pinia';
+
+export const useAppStore = defineStore('app', {
+  state() {
+    return {
+      isSiteFirstLoaded: true,
+      isMenuNavigationOpened: false,
+      hidePageControl: false,
+      isActiveBurger: false,
+      transitionDirection: '', // to-left || to-right
+      isPageLoaderHide: false, // useful in develop mode
+      navigation: []
+    };
+  },
+
+  getters: {
+    isSiteFirstLoaded: (state) => state.isSiteFirstLoaded,
+    isMenuNavigationOpened: (state) => state.isMenuNavigationOpened,
+    isActiveBurger: (state) => state.isActiveBurger,
+    transitionDirection: (state) => state.transitionDirection,
+    hidePageControl: (state) => state.hidePageControl,
+    isPageLoaderHide: (state) => state.isPageLoaderHide,
+    navigation: (state) => state.navigation,
+  },
+
+  actions: {
+    async toHomePage() {
+      document.location.href = 'https://syncmd.com/id/';
+    },
+    async saveStartUrl() {
+      sessionStorage.setItem('startUrl', document.location.href);
+    },
+    async toStartPage() {
+      document.location.href = sessionStorage.getItem('startUrl') || '';
+    },
+    setClickDeclineTask(bool: boolean) {
+      this.isClickDeclineTask = bool;
+    },
+    setClickAcceptTask(bool: boolean) {
+      this.isClickAcceptTask = bool;
+    },
+    setTaskId(taskId: string) {
+      this.taskId = taskId;
+    },
+    setTaskIndex(index: number) {
+      this.taskIndex = index;
+    },
+  },
+});
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useAppStore, import.meta.hot));
+}
+
+
+
+export default {
+  state: () => ({
+    isSiteFirstLoaded: true,
+    isMenuNavigationOpened: false,
+    hidePageControl: false,
+    isActiveBurger: false,
+    transitionDirection: '', // to-left || to-right
+    isPageLoaderHide: false, // useful in develop mode
+    navigation: []
+  }),
+  getters: {
+    isSiteFirstLoaded: (state) => state.isSiteFirstLoaded,
+    isMenuNavigationOpened: (state) => state.isMenuNavigationOpened,
+    isActiveBurger: (state) => state.isActiveBurger,
+    transitionDirection: (state) => state.transitionDirection,
+    hidePageControl: (state) => state.hidePageControl,
+    isPageLoaderHide: (state) => state.isPageLoaderHide,
+    navigation: (state) => state.navigation,
+  },
+  actions: {
+
+  },
+  mutations: {
+    setIsSiteFirstLoaded(state, bool) {
+      state.isSiteFirstLoaded = bool
+    },
+    setIsMenuNavigation(state, bool) {
+      state.isMenuNavigationOpened = bool
+    },
+    setHidePageControl(state, bool) {
+      state.hidePageControl = bool
+    },
+    findDirection(state, route) {
+      const { routes } = this.$router.options
+      const currentIndex = routes.findIndex(
+          (x) => x.name === this.$router.currentRoute.name
+      )
+      const goToIndex = routes.findIndex((x) => x.name === route.name)
+      return currentIndex < goToIndex ? 'to-right' : 'to-left'
+    },
+    setDirection(state, direction) {
+      state.transitionDirection = direction
+    },
+    toPage(store, { route, direction }) {
+      this.commit('app/setIsMenuNavigation', false)
+      this.commit('app/setHidePageControl', true)
+      this.commit('app/setDirection',
+          direction || this.commit('app/findDirection', route)
+      )
+      setTimeout(() => this.$router.push(route), 600)
+      setTimeout(() => this.commit('app/setHidePageControl', false), 900)
+    },
+    setIsPageLoaderHide(state, bool) {
+      state.isPageLoaderHide = bool
+    },
+    setNavigation(state, arr) {
+      const orderList = ['game','portfolio','about','contacts']
+      const orderedNav = orderList.map(name => arr.find(x=>x.name === name))
+      state.navigation = orderedNav
+    },
+  },
+}
+
+
+
+// export const state = () => ({
+  // isSiteFirstLoaded: true,
+  // isMenuNavigationOpened: false,
+  // hidePageControl: false,
+  // isActiveBurger: false,
+  // transitionDirection: '', // to-left || to-right
+  // isPageLoaderHide: false, // useful in develop mode
+  // navigation: []
+// })
+
+// export const getters = {
+  // isSiteFirstLoaded: (state) => state.isSiteFirstLoaded,
+  // isMenuNavigationOpened: (state) => state.isMenuNavigationOpened,
+  // isActiveBurger: (state) => state.isActiveBurger,
+  // transitionDirection: (state) => state.transitionDirection,
+  // hidePageControl: (state) => state.hidePageControl,
+  // isPageLoaderHide: (state) => state.isPageLoaderHide,
+  // navigation: (state) => state.navigation,
+// }
+
+// export const mutations = {
+  // setIsSiteFirstLoaded(state, bool) {
+  //   state.isSiteFirstLoaded = bool
+  // },
+  // setIsMenuNavigation(state, bool) {
+  //   state.isMenuNavigationOpened = bool
+  // },
+  // setHidePageControl(state, bool) {
+  //   state.hidePageControl = bool
+  // },
+  // findDirection(state, route) {
+  //   const { routes } = this.$router.options
+  //   const currentIndex = routes.findIndex(
+  //       (x) => x.name === this.$router.currentRoute.name
+  //   )
+  //   const goToIndex = routes.findIndex((x) => x.name === route.name)
+  //   return currentIndex < goToIndex ? 'to-right' : 'to-left'
+  // },
+  // setDirection(state, direction) {
+  //   state.transitionDirection = direction
+  // },
+  // toPage(store, { route, direction }) {
+  //   this.commit('app/setIsMenuNavigation', false)
+  //   this.commit('app/setHidePageControl', true)
+  //   this.commit('app/setDirection',
+  //       direction || this.commit('app/findDirection', route)
+  //   )
+  //   setTimeout(() => this.$router.push(route), 600)
+  //   setTimeout(() => this.commit('app/setHidePageControl', false), 900)
+  // },
+  // setIsPageLoaderHide(state, bool) {
+  //   state.isPageLoaderHide = bool
+  // },
+  // setNavigation(state, arr) {
+  //   const orderList = ['game','portfolio','about','contacts']
+  //   const orderedNav = orderList.map(name => arr.find(x=>x.name === name))
+  //   state.navigation = orderedNav
+  // },
+// }
+
