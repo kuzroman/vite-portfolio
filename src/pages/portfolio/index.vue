@@ -2,63 +2,49 @@
   <div class="portfolio">
     <div class="scroll-y">
       <h1 class="h1">Portfolio {{ $route.params.id }}</h1>
+
+<!--      <p>{{ $t("message.hello") }}</p>-->
+<!--      <select v-model="$i18n.locale">-->
+<!--        <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>-->
+<!--      </select>-->
+
       <div class="works">
-        <router-link v-for="(work, i) in works" :to="{ path: `portfolio/${i}`}" :key="i" >
-<!--        <NuxtLink v-for="(work, i) in works" :to="{ path: `portfolio/${i}`}" :key="i">-->
-          <div
-              class="work"
-              :style="{'background-image': `url(${getBg(work, '0')})`}">
+        <router-link v-for="(work, i) in works" :to="{ path: `/portfolio/${i}`}" :key="i" >
+          <div class="work"
+               :style="{'background-image': `url(${getBg(work, '0')})`}">
             <div class="work-date">{{ work.date }}</div>
             <div class="work-desc">
               <div v-for="skill in work.skills">{{ skill }}</div>
             </div>
             <div class="work-logo" :style="{'background-image': `url(${getBg(work, 'logo')})`}"></div>
           </div>
-<!--        </NuxtLink>-->
         </router-link>
       </div>
     </div>
   </div>
+
 </template>
 
-<script>
-import { default as works } from "~/db/works-new.js";
-console.log('works1', works);
+<script setup>
+import { default as worksData } from "~/db/works-new.js";
+// import { useI18n } from 'vue-i18n';
+// const { t, locale } = useI18n(); // than can change locale!
 
-export default {
-  name: 'PagePortfolio',
-  data() {
-    return {
-      works: works
-    }
-  },
-  methods: {
+// import { inject } from 'vue'
+// const i18nPlugin = inject('i18nPlugin')
+// console.log(111, i18nPlugin.greetings.hello)
 
-    getBg(work, name) {
-      const type = name === 'logo' ? '.png' : '.jpg'
-      return `/img/portfolio/gallery/${work.imageDirectory}/${name + type}`
-    },
-  },
-
-  transition: {
-    name: 'fade',
-    mode: ''
-  },
-
-  head() {
-    return {
-      title: 'front-end developer portfolio description',
-      meta: []
-    }
-  },
-}
+const works = ref(worksData);
+const getBg = (work, name) => {
+  const type = name === 'logo' ? '.png' : '.jpg'
+  return `/img/portfolio/gallery/${work.imageDirectory}/${name + type}`
+};
 </script>
 
 <style lang="scss">
 @import "../../assets/styles/props";
 
 .portfolio {
-
 
   .works {
     display: flex;

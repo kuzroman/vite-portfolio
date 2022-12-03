@@ -24,18 +24,6 @@
 <script>
 export default {
   name: 'PageContacts',
-
-  transition: {
-    name: 'fade',
-    mode: ''
-  },
-
-  head() {
-    return {
-      title: 'front-end developer contacts',
-      meta: []
-    }
-  },
 }
 </script>
 

@@ -34,11 +34,6 @@ const routes = [
         component: PortfolioId,
     },
     // {
-    //     path: '/about',
-    //     name: 'About',
-    //     component: About,
-    // },
-    // {
     //     path: '/',
     //     name: 'Home',
     //     component: Home,

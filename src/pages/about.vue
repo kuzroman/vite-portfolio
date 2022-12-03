@@ -55,22 +55,10 @@
 
 <script>
 import SkillsMe from "~/components/SkillsMe.vue";
-import UILink2Move from '~/components/UI/Link2Move.vue'
+// import UILink2Move from '~/components/UI/Link2Move.vue'
 
 export default {
-  components: { SkillsMe, UILink2Move },
-
-  transition: {
-    name: 'fade',
-    mode: ''
-  },
-
-  head() {
-    return {
-      title: 'front-end developer skills',
-      meta: []
-    }
-  },
+  components: { SkillsMe },
 }
 </script>
 

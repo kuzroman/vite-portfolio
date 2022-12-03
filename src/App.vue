@@ -8,8 +8,15 @@
 
     <main class="content">
 
-<!--      <Nuxt  class="view" :class="routeStyles" />-->
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <transition name="fade">
+          <component :is="Component" :class="routeStyles"  />
+        </transition>
+      </router-view>
+
+<!--      <transition name="fade">-->
+<!--        <router-view :class="routeStyles"></router-view>-->
+<!--      </transition>-->
 
       <div class="content-arrow left" v-if="showArrow" :class="{ hide: isGameReady }">
         <a @click="toPage({ route: prevRoute, direction: 'to-left' })">
@@ -25,8 +32,6 @@
     </main>
 
   </div>
-
-<!--    <router-view></router-view>-->
 </template>
 
 <script>
@@ -37,6 +42,8 @@ import IconBurger from '~/components/IconBurger.vue'
 import SoundBar from '~/components/SoundBar.vue'
 import ComeBack from '~/components/ComeBack.vue'
 import PageControl from '~/components/PageControl.vue'
+// import router from '~/router/index'
+
 
 export default {
   components: { PageLoader, IconBurger, ComeBack, MenuNavigation, PageControl, SoundBar },
@@ -52,19 +59,17 @@ export default {
     ...mapGetters('game', ['isGameReady']),
 
     routes() {
-      // return this.$router.options.routes
       return this.navigation
     },
     routesLen() {
-      // return this.routes.length
       return this.navigation.length
     },
     routeStyles() {
       let styles = []
       styles.push(this.transitionDirection)
-      if (this.isSiteFirstLoaded) {
-        styles.push('first-loaded')
-      }
+      // if (this.isSiteFirstLoaded) {
+      //   styles.push('first-loaded')
+      // }
       return styles
     },
     currentPath() {
@@ -190,11 +195,11 @@ export default {
     animation: rotateNextEnter $speed forwards;
   }
 
-  .first-loaded {
-    &.fade-enter-active {
-      animation: rotateNextEnter 0s forwards;
-    }
-  }
+  //.first-loaded {
+  //  &.fade-enter-active {
+  //    animation: rotateNextEnter 0s forwards;
+  //  }
+  //}
 
   @keyframes rotateNextLeave {
     0% {
