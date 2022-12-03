@@ -1,6 +1,11 @@
 <template>
   <div class="skills">
 
+    <p>{{ $t("message.hello") }}</p>
+    <select v-model="$i18n.locale">
+      <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>
+    </select>
+
     <div class="scroll-y">
 
       <h1 class="h1">About</h1>

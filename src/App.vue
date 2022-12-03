@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <PageLoader v-if="!isPageLoaderHide" />
+<!--    <PageLoader v-if="!isPageLoaderHide" />-->
     <MenuNavigation />
     <IconBurger />
     <SoundBar />
@@ -8,15 +8,15 @@
 
     <main class="content">
 
-      <router-view v-slot="{ Component }">
-        <transition name="fade">
-          <component :is="Component" :class="routeStyles"  />
-        </transition>
-      </router-view>
+<!--      <router-view v-slot="{ Component }">-->
+<!--        <transition name="fade">-->
+<!--          <component :is="Component" :class="routeStyles"  />-->
+<!--        </transition>-->
+<!--      </router-view>-->
 
-<!--      <transition name="fade">-->
-<!--        <router-view :class="routeStyles"></router-view>-->
-<!--      </transition>-->
+      <transition>
+        <router-view :class="routeStyles"></router-view>
+      </transition>
 
       <div class="content-arrow left" v-if="showArrow" :class="{ hide: isGameReady }">
         <a @click="toPage({ route: prevRoute, direction: 'to-left' })">

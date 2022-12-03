@@ -3,10 +3,10 @@
     <div class="scroll-y">
       <h1 class="h1">Portfolio {{ $route.params.id }}</h1>
 
-<!--      <p>{{ $t("message.hello") }}</p>-->
-<!--      <select v-model="$i18n.locale">-->
-<!--        <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>-->
-<!--      </select>-->
+      <p>{{ $t("message.hello") }}</p>
+      <select v-model="$i18n.locale">
+        <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>
+      </select>
 
       <div class="works">
         <router-link v-for="(work, i) in works" :to="{ path: `/portfolio/${i}`}" :key="i" >
